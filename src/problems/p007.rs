@@ -31,3 +31,37 @@ impl Solution {
         return result as i32;
     }
 }
+
+fn run_007_01() {
+    let solution = Solution::reverse(123);
+    assert_eq!(solution, 321);
+}
+fn run_007_02() {
+    let solution = Solution::reverse(-123);
+    assert_eq!(solution, -321);
+}
+fn run_007_03() {
+    let solution = Solution::reverse(120);
+    assert_eq!(solution, 21);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[allow(unused_imports)]
+    use test::Bencher;
+
+    // This will only be executed when using "cargo test" and not "cargo bench"
+    #[bench]
+    fn bench_run_007_01(b: &mut Bencher) {
+        b.iter(|| run_007_01());
+    }
+    #[bench]
+    fn bench_run_007_02(b: &mut Bencher) {
+        b.iter(|| run_007_02());
+    }
+    #[bench]
+    fn bench_run_007_03(b: &mut Bencher) {
+        b.iter(|| run_007_03());
+    }
+}

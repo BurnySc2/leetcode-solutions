@@ -15,3 +15,22 @@ impl Solution {
         return result;
     }
 }
+
+fn run_001() {
+    // Problem 001
+    let solution = Solution::two_sum(vec![2, 7, 11, 15], 9);
+    assert_eq!(solution, vec![0, 1]);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[allow(unused_imports)]
+    use test::Bencher;
+
+    // This will only be executed when using "cargo test" and not "cargo bench"
+    #[bench]
+    fn bench_run_001(b: &mut Bencher) {
+        b.iter(|| run_001());
+    }
+}

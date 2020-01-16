@@ -50,3 +50,30 @@ fn main() {
     //    println!("Hello, world!");
     test_solution();
 }
+
+fn run_004_01() {
+    // Problem 004
+    let solution = Solution::find_median_sorted_arrays(vec![1, 3], vec![2]);
+    assert_eq!(solution, 2.0);
+}
+fn run_004_02() {
+    let solution = Solution::find_median_sorted_arrays(vec![1, 2], vec![3, 4]);
+    assert_eq!(solution, 2.5);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[allow(unused_imports)]
+    use test::Bencher;
+
+    // This will only be executed when using "cargo test" and not "cargo bench"
+    #[bench]
+    fn bench_run_004_01(b: &mut Bencher) {
+        b.iter(|| run_004_01());
+    }
+    #[bench]
+    fn bench_run_004_02(b: &mut Bencher) {
+        b.iter(|| run_004_02());
+    }
+}

@@ -35,7 +35,7 @@ jobs:
         path: target
         key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
 
-    - name: Install latest nightly
+    - name: Install specific nightly version
       uses: actions-rs/toolchain@v1
       with:
         toolchain: nightly-2019-11-01
@@ -53,11 +53,11 @@ jobs:
 
     - name: Test
       run: cargo test --verbose --release
-      if: matrix.os == 'windows-latest'
+#      if: matrix.os == 'windows-latest'
 
     - name: Bench
       run: cargo bench
-      if: matrix.os == 'windows-latest'
+#      if: matrix.os == 'windows-latest'
 
     - name: Build
       run: cargo build --verbose --release
