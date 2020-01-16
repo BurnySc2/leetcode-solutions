@@ -1,4 +1,4 @@
-name: Run benchmarks
+name: Runbenchmarks
 on: [push]
 
 jobs:
