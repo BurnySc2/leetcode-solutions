@@ -29,7 +29,7 @@ jobs:
           python -m pip install pipenv
           pipenv install --dev --python ${{ matrix.python-version }}
 
-      - name: Test with pytest
+      - name: Run pytest benchmarks
         run: |
           pipenv run python -m pytest
 
@@ -84,11 +84,9 @@ jobs:
 
     - name: Test
       run: cargo test --verbose --release
-#      if: matrix.os == 'windows-latest'
 
-    - name: Bench
+    - name: Run rust benchmarks
       run: cargo bench
-#      if: matrix.os == 'windows-latest'
 
     - name: Build
       run: cargo build --verbose --release
