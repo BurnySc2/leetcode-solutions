@@ -20,7 +20,7 @@ impl Solution {
         }
 
         // println!("{0}, {1}", result, limit);
-        let limit = (2 as i64).pow(31 as u32);
+        let limit = 2i64.pow(31u32);
         if result > limit - 1 || result < -limit {
             return 0;
         }

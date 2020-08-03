@@ -5,16 +5,49 @@ impl Solution {
         if x < 0 {
             return false;
         }
-        let mut n = x;
-        let mut a = 0;
-        while n > 0 {
-            let r = n % 10;
-            n = n / 10;
-            a = a * 10 + r;
+        let mut number = x;
+        let mut reverse_number = 0;
+        while number > 0 {
+            let remainder = number % 10;
+            number = number / 10;
+            reverse_number = reverse_number * 10 + remainder;
         }
-        if a == x {
+        if reverse_number == x {
             return true;
         }
         return false;
+    }
+}
+
+fn run_009_01() {
+    let solution = Solution::is_palindrome(121);
+    assert_eq!(solution, true);
+}
+fn run_009_02() {
+    let solution = Solution::is_palindrome(-123);
+    assert_eq!(solution, false);
+}
+fn run_009_03() {
+    let solution = Solution::is_palindrome(10);
+    assert_eq!(solution, false);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[allow(unused_imports)]
+    use test::Bencher;
+
+    #[bench]
+    fn bench_run_009_01(b: &mut Bencher) {
+        b.iter(|| run_009_01());
+    }
+    #[bench]
+    fn bench_run_009_02(b: &mut Bencher) {
+        b.iter(|| run_009_02());
+    }
+    #[bench]
+    fn bench_run_009_03(b: &mut Bencher) {
+        b.iter(|| run_009_03());
     }
 }
