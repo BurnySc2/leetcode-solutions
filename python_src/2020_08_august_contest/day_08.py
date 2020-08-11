@@ -43,6 +43,26 @@ class Solution:
             self.find_sum_from_node(node.right, current_sum + node.right.val, target)
 
 
+""" Best solution
+class Solution:
+    def pathSum(self, root, sum):
+        def dfs(node,presum,sum):
+            if not node:
+                return 
+            cursum = presum+node.val
+            if cursum-sum in dic:
+                self.count+=dic[cursum-sum]
+            dic[cursum]+=1
+            dfs(node.left,cursum,sum)
+            dfs(node.right,cursum,sum)
+            dic[cursum]-=1
+        dic = collections.defaultdict(int)
+        dic[0]=1
+        self.count=0
+        dfs(root,0,sum)
+        return self.count
+"""
+
 if __name__ == "__main__":
     sol = Solution()
     asd = TreeNode(

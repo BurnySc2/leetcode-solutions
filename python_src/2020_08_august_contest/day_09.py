@@ -65,6 +65,59 @@ class Solution:
         return (cell[0] + other[0], cell[1] + other[1])
 
 
+""" Best solution
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        minutes = 0
+        toVisit = []
+        nextMinuteVisit = []
+        freshOranges = 0
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if(grid[i][j] == 2):
+                    toVisit.append((i,j))
+                elif(grid[i][j] == 1):
+                    freshOranges += 1
+                    
+        # BFS from every rotten orange
+        # If at the end there exists a fresh orange we return.
+        while len(toVisit) > 0:
+            currentPoint = toVisit.pop(0)
+
+            x = currentPoint[0]
+            y = currentPoint[1]
+            
+            if x+1 < len(grid) and grid[x+1][y] == 1: 
+                nextMinuteVisit.append((x+1, y))
+                grid[x+1][y] = 2
+                freshOranges -= 1
+            if x-1 >= 0 and grid[x-1][y] == 1: 
+                nextMinuteVisit.append((x-1, y))
+                grid[x-1][y] = 2
+                freshOranges -= 1
+            if y+1 < len(grid[0]) and grid[x][y+1] == 1: 
+                nextMinuteVisit.append((x, y+1))
+                grid[x][y+1] = 2
+                freshOranges -= 1
+            if y-1 >= 0 and grid[x][y-1] == 1: 
+                nextMinuteVisit.append((x, y-1))
+                grid[x][y-1] = 2
+                freshOranges -= 1
+                
+            if len(toVisit) == 0 and len(nextMinuteVisit) > 0:
+                toVisit = nextMinuteVisit
+                nextMinuteVisit = []
+                minutes += 1
+        
+        # Check if any oranges are still fresh
+        if freshOranges > 0:
+            return -1
+        
+        return minutes
+"""
+
+
 # fmt: off
 test_cases = [
     [[2,1,1],[1,1,0],[0,1,1]],

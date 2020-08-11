@@ -6,6 +6,15 @@ class Solution:
         return sum((ord(number) - 64) * 26 ** index for index, number in enumerate(s[::-1]))
 
 
+""" Best solution
+class Solution:
+    def titleToNumber(self, s: str) -> int:
+        n = 0
+        while len(s):
+            n, s = n * 26 + ord(s[0]) - 64, s[1:]
+        return n
+"""
+
 # fmt: off
 test_cases = [
     "A",

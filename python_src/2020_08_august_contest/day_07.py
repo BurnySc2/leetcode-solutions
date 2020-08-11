@@ -51,6 +51,23 @@ class Solution:
             self.verticalTraversal2(new_nodes, new_x_values, my_dict)
 
 
+""" Best solution
+class Solution:
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+        inorder = defaultdict(list)
+        def explore(node, x, y):
+            if not node: return
+            explore(node.left, x - 1, y - 1)
+            inorder[x].append((node.val, y))
+            explore(node.right, x + 1, y - 1)
+        explore(root, 0, 0)
+        return [
+            [val for val, y in sorted(inorder[k], key = lambda tup: (-tup[1], tup[0]))] 
+            for k in sorted(inorder.keys())
+        ]
+"""
+
+
 if __name__ == "__main__":
     sol = Solution()
     asd = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3, TreeNode(6), TreeNode(7)))
