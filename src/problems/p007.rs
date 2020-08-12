@@ -3,7 +3,7 @@ pub struct Solution {}
 impl Solution {
     pub fn reverse(x: i32) -> i32 {
         let is_negative = x < 0;
-        let mut a;
+        let a;
         if is_negative {
             a = -x;
         } else {
