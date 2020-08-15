@@ -1,17 +1,9 @@
-"""
-Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
-
-https://leetcode.com/problems/pascals-triangle/
-"""
-from typing import List
-
-
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         rows = [[] for _ in range(numRows)]
         row_number = 0
         down = True
-        for index, char in enumerate(s):
+        for char in s:
             rows[row_number].append(char)
             if numRows > 1:
                 if row_number == 0:
