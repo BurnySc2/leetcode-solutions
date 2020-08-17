@@ -86,7 +86,8 @@ if __name__ == "__main__":
 
     app = Solution()
     for test_case, correct_result in zip(test_cases, results):
+        test_case_copy = test_case.copy() if hasattr(test_case, "copy") else test_case
         my_result = app.generate(test_case)
         assert (
             my_result == correct_result
-        ), f"My result: {my_result}, correct result: {correct_result}\nTest Case: {test_case}"
+        ), f"My result: {my_result}, correct result: {correct_result}\nTest Case: {test_case_copy}"
