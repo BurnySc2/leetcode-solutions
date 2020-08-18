@@ -54,11 +54,11 @@ fn main() {
 fn run_004_01() {
     // Problem 004
     let solution = Solution::find_median_sorted_arrays(vec![1, 3], vec![2]);
-    assert_eq!(solution, 2.0);
+    assert!((solution - 2.0).abs() < f64::EPSILON);
 }
 fn run_004_02() {
     let solution = Solution::find_median_sorted_arrays(vec![1, 2], vec![3, 4]);
-    assert_eq!(solution, 2.5);
+    assert!((solution - 2.5).abs() < f64::EPSILON);
 }
 
 #[cfg(test)]

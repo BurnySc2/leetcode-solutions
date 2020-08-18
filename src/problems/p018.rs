@@ -23,7 +23,7 @@ impl Solution {
                 }
             }
         }
-        let mut solution: Vec<Vec<_>> = solution_set.into_iter().collect();
+        let solution: Vec<Vec<_>> = solution_set.into_iter().collect();
         solution
     }
 }

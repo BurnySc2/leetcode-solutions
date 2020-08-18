@@ -15,7 +15,7 @@ impl Solution {
         let mut result: i64 = 0;
         // Loop over string, i is index and c is char
         for (i, c) in b.chars().enumerate() {
-            result += ((c as i64 - 48) * (10 as i64).pow(i as u32));
+            result += (c as i64 - 48) * (10 as i64).pow(i as u32);
             // println!("{0}, {1}, {2:?}, {3}, {4}", c, i, c as i32 - 48, (10 as i64).pow(i as u32), result);
         }
 

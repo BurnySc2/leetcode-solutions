@@ -41,7 +41,7 @@ impl ListNode {
 
 impl Solution {
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
-        Some(Box::new((ListNode::new(0))))
+        Some(Box::new(ListNode::new(0)))
     }
 }
 

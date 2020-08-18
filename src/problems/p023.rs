@@ -45,7 +45,6 @@ impl Solution {
             return None;
         }
 
-        // let mut lists = lists.clone();
         let mut values = Vec::new();
         for i in lists {
             for j in ListNode::convert_to_vec(&i) {

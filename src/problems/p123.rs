@@ -1,6 +1,5 @@
 pub struct Solution {}
 
-use std::collections::HashMap;
 use std::i32;
 
 impl Solution {
