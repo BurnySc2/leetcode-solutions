@@ -1,8 +1,3 @@
-"""
-Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
-
-https://leetcode.com/problems/pascals-triangle/
-"""
 from typing import List
 
 
@@ -65,52 +60,84 @@ class ListNode:
             cur = cur.next
         return l
 
-    def reverse(self) -> "ListNode":
-        cur, prev = self, None
-        while cur:
-            cur.next, prev, cur = prev, cur, cur.next
-        return prev
-
-
-if __name__ == "__main__":
-    ll = ListNode.from_list([1, 2, 3, 4, 5])
-    ll = ll.reverse()
-    assert ll.to_list() == [5, 4, 3, 2, 1]
-    ll = ListNode.from_list([1, 2, 3, 4])
-    ll = ll.reverse()
-    assert ll.to_list() == [4, 3, 2, 1]
-
 
 class Solution:
-    def generate(self, numRows: int) -> List[List[int]]:
-        if numRows == 0:
-            return []
-        pascal = [[1]]
-        for row_index in range(1, numRows):
-            new_row = []
-            new_row.append(1)
-            for column_index in range(row_index - 1):
-                value = pascal[row_index - 1][column_index] + pascal[row_index - 1][column_index + 1]
-                new_row.append(value)
-            new_row.append(1)
-            pascal.append(new_row)
-        return pascal
+    def reorderList(self, head: ListNode) -> None:
+        if not head or not head.next or not head.next.next:
+            return
 
+        # Find length
+        length = 0
+        cur = head
+        while cur:
+            length += 1
+            cur = cur.next
+
+        # Find middle listnode
+        cur = head
+        for i in range(length // 2):
+            cur = cur.next
+        prev, cur = cur, cur.next
+
+        # Dettach to middle
+        prev.next = None
+
+        # Reverse second half
+        while cur:
+            cur.next, cur, prev = prev, cur.next, cur
+        tail = prev
+
+        # Mix lists
+        next_head = head.next
+        next_tail = tail.next
+
+        # Cut off last link
+        if length % 2 == 1:
+            t = tail
+        else:
+            t = head
+        for i in range(length // 2 - 1):
+            t = t.next
+        t.next = None
+
+        # print(head)
+        # print(tail)
+
+        new_head = head
+        while next_head and next_tail:
+            new_head.next, tail.next = tail, new_head.next
+            new_head, tail, next_head, next_tail = next_head, next_tail, next_head.next, next_tail.next
+        # print(tail)
+        if tail:
+            new_head.next = tail
+            tail.next = None
+        # print(next_head)
+        if next_head:
+            tail.next = next_head
+        # print(head)
+
+
+# fmt: off
+test_cases = [
+    ListNode.from_list([1, 2, 3, 4]),
+    ListNode.from_list([1, 2, 3, 4, 5]),
+    ListNode.from_list([1]),
+    # ListNode.from_list([]),
+]
+results = [
+    [1, 4, 2, 3],
+    [1, 5, 2, 4, 3],
+    [1],
+    # [],
+]
+# fmt: on
 
 if __name__ == "__main__":
-    # fmt: off
-    test_cases = [
-        5
-    ]
-    results = [
-        [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
-    ]
-    # fmt: on
-
     app = Solution()
     for test_case, correct_result in zip(test_cases, results):
-        test_case_copy = test_case.copy() if hasattr(test_case, "copy") else test_case
-        my_result = app.generate(test_case)
+        test_case_copy = test_case.to_list()
+        app.reorderList(test_case)
+        my_result = test_case.to_list()
         assert (
             my_result == correct_result
         ), f"My result: {my_result}, correct result: {correct_result}\nTest Case: {test_case_copy}"

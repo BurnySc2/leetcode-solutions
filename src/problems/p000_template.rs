@@ -1,22 +1,27 @@
 pub struct Solution {}
 
+type Link = Option<Box<ListNode>>;
+
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
-    pub next: Option<Box<ListNode>>,
+    pub next: Link,
 }
 
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
-        ListNode { next: None, val }
+        ListNode {
+            next: None,
+            val: val,
+        }
     }
 }
 
 /// Dont need the stuff above for leetcode
 
 impl ListNode {
-    fn convert_from_vec(vec: &Vec<i32>) -> Option<Box<ListNode>> {
+    fn convert_from_vec(vec: &Vec<i32>) -> Link {
         if vec.is_empty() {
             return None;
         }
@@ -29,7 +34,7 @@ impl ListNode {
         node
     }
 
-    fn convert_to_vec(mut node: &Option<Box<ListNode>>) -> Vec<i32> {
+    fn convert_to_vec(mut node: &Link) -> Vec<i32> {
         let mut vec = Vec::new();
         while let Some(n) = node {
             vec.push(n.val);
@@ -40,7 +45,7 @@ impl ListNode {
 }
 
 impl Solution {
-    pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
+    pub fn merge_k_lists(lists: Vec<Link>) -> Link {
         Some(Box::new(ListNode::new(0)))
     }
 }
