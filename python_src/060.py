@@ -7,27 +7,17 @@ from typing import List, Any, Generator
 from math import factorial
 
 
-def permutation_generator(my_list: List[Any]) -> Generator[Any, None, None]:
-    # Length of list: at least 1
-    if len(my_list) == 1:
-        yield my_list
-        return
-    for i, middle in enumerate(my_list):
-        remaining_list = my_list[:i] + my_list[i + 1 :]
-        for p in permutation_generator(remaining_list):
-            yield [middle] + p
-
-
-def permutation_backwards_generator(my_list: List[Any]) -> Generator[Any, None, None]:
-    # Length of list: at least 1
-    if len(my_list) == 1:
-        yield my_list
-        return
-    for i in range(len(my_list) - 1, -1, -1):
-        middle = my_list[i]
-        remaining_list = my_list[:i] + my_list[i + 1 :]
-        for p in permutation_backwards_generator(remaining_list):
-            yield [middle] + p
+def get_permutation_at_index(original: List[Any], index: int) -> List[Any]:
+    """ Returns lexicographically ordered permutation at index 'index'.
+    assert get_permutation_at_index(list("ABC"), 0) == list("ABC")
+    assert get_permutation_at_index(list("ABC"), 5) == list("CBA")
+    assert get_permutation_at_index(list("ABCD"), 23) == list("DCBA")
+    """
+    assert 0 <= index < factorial(len(original))
+    if len(original) == 1:
+        return original
+    quotient, remainder = divmod(index, factorial(len(original) - 1))
+    return [original[quotient]] + get_permutation_at_index(original[:quotient] + original[quotient + 1 :], remainder)
 
 
 class Solution:
@@ -35,18 +25,8 @@ class Solution:
         if n == 1:
             return "1"
         numbers = list(map(str, range(1, n + 1)))
-        amount = factorial(n)
 
-        if amount - k < k:
-            permutations = permutation_backwards_generator(numbers)
-            for _ in range(amount - k):
-                next(permutations)
-            return "".join(next(permutations))
-
-        permutations = permutation_generator(numbers)
-        for _ in range(k - 1):
-            next(permutations)
-        return "".join(next(permutations))
+        return "".join(get_permutation_at_index(numbers, k - 1))
 
 
 # fmt: off

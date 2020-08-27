@@ -1,5 +1,4 @@
 use std::collections::{HashMap, VecDeque};
-use std::ops::Index;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 struct StreamChecker {

@@ -5,17 +5,23 @@ https://leetcode.com/problems/permutations/
 """
 
 
-from typing import Set, Tuple, List, Generator
-from collections import Counter
-import itertools
+from typing import List, Generator, Any
+
+
+def permutation_generator(my_list: List[Any]) -> Generator[Any, None, None]:
+    # Length of list: at least 1
+    if len(my_list) == 1:
+        yield my_list
+        return
+    for i, middle in enumerate(my_list):
+        remaining_list = my_list[:i] + my_list[i + 1 :]
+        for p in permutation_generator(remaining_list):
+            yield [middle] + p
 
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        solutions: List[int] = []
-        for permutation in itertools.permutations(nums):
-            solutions.append(list(permutation))
-        return solutions
+        return list(permutation_generator(nums))
 
 
 test_cases = [[1, 2, 3]]
