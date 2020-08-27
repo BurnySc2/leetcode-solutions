@@ -19,6 +19,8 @@ impl Solution {
         // println!("{:?}", intervals_sorted);
 
         let mut results: HashMap<Vec<i32>, i32> = HashMap::new();
+        let mut last_index = 0;
+        let mut last_inderval_end = std::i32::MAX;
 
         for (i, interval1) in intervals_sorted.iter().enumerate() {
             let (x, y, z) = (interval1[0], interval1[1], interval1[2]);
@@ -26,13 +28,21 @@ impl Solution {
             if results.contains_key(&vec![x, y]) {
                 continue;
             }
-            for (j, interval2) in intervals_sorted.iter().skip(i + 1).enumerate() {
+            if interval1[1] < last_inderval_end {
+                last_index = 0;
+            }
+            last_inderval_end = interval1[1];
+            let start_index = last_index.max(i + 1);
+            let mut j2 = 0;
+            for (j, interval2) in intervals_sorted.iter().skip(start_index).enumerate() {
                 if interval1[1] <= interval2[0] {
                     // println!("{:?} {:?}", interval1, interval2);
                     results.insert(vec![interval1[0], interval1[1]], interval2[2]);
                     break;
                 }
+                j2 = j;
             }
+            last_index = j2
         }
 
         let mut return_result = vec![];
