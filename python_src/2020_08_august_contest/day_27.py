@@ -1,6 +1,7 @@
 from typing import List, Dict, Tuple
 import math
 
+
 class Solution:
     def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
         if not intervals:
@@ -18,7 +19,7 @@ class Solution:
             if interval1[1] < last_interval_end:
                 last_index = 0
             last_interval_end = interval1[1]
-            start_index = max(last_index, i+1)
+            start_index = max(last_index, i + 1)
             j = i
             for j, (interval2, index2) in enumerate(intervals_sorted[start_index:], start=start_index):
                 if interval1[1] <= interval2[0]:

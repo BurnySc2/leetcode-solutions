@@ -23,9 +23,8 @@ impl Solution {
         let mut last_inderval_end = std::i32::MAX;
 
         for (i, interval1) in intervals_sorted.iter().enumerate() {
-            let (x, y, z) = (interval1[0], interval1[1], interval1[2]);
             // println!("{}, {}, {}", x, y, z);
-            if results.contains_key(&vec![x, y]) {
+            if results.contains_key(&vec![interval1[0], interval1[1]]) {
                 continue;
             }
             if interval1[1] < last_inderval_end {
