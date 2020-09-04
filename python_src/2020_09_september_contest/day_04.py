@@ -6,20 +6,16 @@ class Solution:
         if not S:
             return [0]
 
-        right = {}
-        for index, char in enumerate(S):
-            right[char] = index
+        right = {char: index for index, char in enumerate(S)}
 
         return_lists = []
-        char = S[0]
         l = 0
-        r = right[char]
+        r = right[S[0]]
         for index, char in enumerate(S):
             if index > r:
                 return_lists.append(r - l + 1)
                 l = index
-            if right[char] > r:
-                r = right[char]
+            r = max(r, right[char])
         return_lists.append(r - l + 1)
 
         return return_lists
