@@ -43,4 +43,3 @@ class Solution:
                 j += 1
                 merged.append(value2)
         return merged
-

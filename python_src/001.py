@@ -12,8 +12,8 @@ class Solution:
 
 
 # fmt: off
-# test_cases = [5]
-# results = [[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]]
+test_cases = [5]
+results = [[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]]
 # fmt: on
 
 if __name__ == "__main__":

@@ -12,10 +12,7 @@ impl Solution {
             number = number / 10;
             reverse_number = reverse_number * 10 + remainder;
         }
-        if reverse_number == x {
-            return true;
-        }
-        return false;
+        return reverse_number == x;
     }
 }
 

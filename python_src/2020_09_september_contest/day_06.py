@@ -9,12 +9,6 @@ class Solution:
         end = array_length if shift >= 0 else array_length + shift
         return start, end
 
-    # @classmethod
-    # def get_start_end2(cls, array_length: int, shift: int) -> Tuple[int, int]:
-    #     start = 0 if shift >= 0 else -shift
-    #     end = array_length - shift if shift > 0 else array_length
-    #     return start, end
-
     def shift_and_count(self, a: np.ndarray, b: np.ndarray, x_shift: int, y_shift: int, size: int):
         a_start_y, a_end_y = self.get_start_end(size, y_shift)
         a_start_x, a_end_x = self.get_start_end(size, x_shift)
@@ -22,9 +16,6 @@ class Solution:
         b_end_y = size - a_start_y
         b_start_x = size - a_end_x
         b_end_x = size - a_start_x
-        # print(size, a_start_y, a_end_y, b_start_y, b_end_y)
-        # b_start_y, b_end_y = self.get_start_end2(size, y_shift)
-        # b_start_x, b_end_x = self.get_start_end2(size, x_shift)
         a_shifted = a[a_start_y:a_end_y, a_start_x:a_end_x]
         b_shifted = b[b_start_y:b_end_y, b_start_x:b_end_x]
         assert a_shifted.shape == b_shifted.shape, f"{a_shifted.shape} == {b_shifted.shape}"

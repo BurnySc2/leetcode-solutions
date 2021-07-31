@@ -3,7 +3,9 @@
 #![feature(test)]
 extern crate test;
 
-mod problems;
+pub mod problems;
+
+use problems::p416::run_02;
 
 // To generate assembly code:
 // cargo rustc -- --emit asm
@@ -17,6 +19,8 @@ mod problems;
 
 fn main() {
     println!("Hi, you are running 'cargo run' but should use 'cargo bench' to see the performance of the solutions.");
+    // run_01();
+    run_02();
 }
 
 #[cfg(test)]

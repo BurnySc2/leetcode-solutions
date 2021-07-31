@@ -1,10 +1,3 @@
-"""
-Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
-
-https://leetcode.com/problems/pascals-triangle/
-"""
-from typing import List
-
 class Solution:
     def wordPattern(self, pattern: str, str: str) -> bool:
         string_split = str.split(" ")
