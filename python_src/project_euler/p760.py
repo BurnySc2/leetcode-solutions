@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import math
 
 
 @dataclass
@@ -35,14 +36,12 @@ g(2, n-2) =
 
 
 def compute(N: int) -> int:
-    # debug_sums = {}
+    debug_sums = {}
     my_sums = {}
     half_power_of_two = 1
     power_of_two = 1
-    while 1:
+    for _ in range(int(math.log(N, 2)) + 1):
         power_of_two *= 2
-        if half_power_of_two > N:
-            break
         for number in range(half_power_of_two, N + 1):
             remainder = number % power_of_two
             factor_left = abs(half_power_of_two - remainder - 1) + half_power_of_two
@@ -51,13 +50,13 @@ def compute(N: int) -> int:
             if remainder >= half_power_of_two:
                 summand_after = 2 * (remainder - half_power_of_two + 1)
             value = factor_left * factor_right + summand_after
-            # debug_sums[half_power_of_two] = debug_sums.get(half_power_of_two, [])
-            # debug_sums[half_power_of_two].append(value)
+            debug_sums[half_power_of_two] = debug_sums.get(half_power_of_two, [])
+            debug_sums[half_power_of_two].append(value)
             my_sums[half_power_of_two] = my_sums.get(half_power_of_two, 0) + value
         half_power_of_two = power_of_two
-
     corrected = {factor: factor * value for factor, value in my_sums.items()}
     result = 2 * sum(corrected.values())
+
     return result
 
 
@@ -101,8 +100,12 @@ def main():
     print(f"G(10) == {result_10}")
     result_100 = compute(100)
     print(f"G(100) == {result_100}")
-    assert result_10 == 754
-    assert result_100 == 583_766
+    result_1000 = compute(1000)
+    print(f"G(1000) == {result_1000}")
+    assert result_10 == 754, f"{result_10} != 754"
+    assert result_100 == 583_766, f"{result_100} != 583_766"
+    assert result_1000 == 580_621_308, f"{result_1000} != 580_621_308"
+    # result_n = compute(10**7)
 
     # result = []
     # for i in my_sum:
@@ -147,6 +150,8 @@ for i in range(10):
         my_sum += i // 2
     elif i % 2 == 1:
         my_sum += i + 1
+        
+3 * (1+2+3+...+n//2)
         
 0
 2
