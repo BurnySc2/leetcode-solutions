@@ -39,50 +39,6 @@ class Solution:
                             return True
         return False
 
-        # if result:
-        #     print(f"Result for {nums} is:")
-        #     print(f"{result}")
-        #     assert sum(result) == nums_sum // 2
-        #     return True
-        # return False
-
-
-#
-# class Solution:
-#     def canPartition(self, nums: List[int]) -> bool:
-#         nums_sum = sum(nums)
-#         if nums_sum % 2 == 1:
-#             return False
-#         nums.sort(reverse=True)
-#         result = self.can_partition_recursive(tuple(nums), nums_sum // 2)
-#         if result:
-#             print(f"Result for {nums} is:")
-#             print(f"{result}")
-#             assert sum(result) == nums_sum // 2
-#             return True
-#         return False
-#
-#     @lru_cache(maxsize=None)
-#     def can_partition_recursive(self, nums: tuple, target: int) -> List[int]:
-#         if not nums:
-#             return []
-#         min_value = min(nums)
-#         if min_value > target:
-#             return []
-#         temp_sum = sum(nums)
-#         if temp_sum < target:
-#             return []
-#
-#         for index, i in enumerate(nums):
-#             if i > target:
-#                 continue
-#             if i == target:
-#                 return [i]
-#             if i < target:
-#                 result = self.can_partition_recursive(nums[index + 1:], target - i)
-#                 if result:
-#                     return [i] + result
-#         return []
 
 # fmt: off
 test_cases = [
