@@ -136,9 +136,9 @@ def compute_faster(N: int) -> int:
 
             if half_power_of_two <= max_remainder < power_of_two:
                 bottom_correction_start = 2 + bottom1_increment * terms_amount
-                increment = 2*(terms_amount+1)
-                boottom12_correction_terms = (max_remainder % half_power_of_two) + 1
-                bottom_correction = sum_formula_general(bottom_correction_start, increment, boottom12_correction_terms)
+                increment = 2+terms_amount
+                bottom12_correction_terms = (max_remainder % half_power_of_two) + 1
+                bottom_correction = sum_formula_general(bottom_correction_start, increment, bottom12_correction_terms)
 
             result = result12 + result34 + top_correction + bottom_correction
 
