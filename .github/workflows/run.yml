@@ -32,7 +32,7 @@ jobs:
 
       - name: Run pytest benchmarks
         run: |
-          poetry run python -m pytest
+          poetry run pytest
 
 
   rust:
